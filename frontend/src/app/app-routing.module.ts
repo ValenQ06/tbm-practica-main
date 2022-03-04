@@ -11,6 +11,8 @@ import { SaveTaskComponent } from './board/save-task/save-task.component';
 import { LoginComponent } from './home/login/login.component';
 import { RegisterComponent } from './home/register/register.component';
 
+import { AuthGuard } from './guard/auth.guard';
+
 //Aqui invoco los componentes que quiero cargar en la pagina
 const routes: Routes = [
   {
@@ -22,41 +24,49 @@ const routes: Routes = [
     component: LoginComponent, //Ponemos primero el loguin para que sea lo primero que carga con el index
   },
   {
-    path:'listTask', //por medio de listTask me permitira invocar la tarea
+    path: 'listTask', //por medio de listTask me permitira invocar la tarea
     component: ListTaskComponent,
+    canActivate: [AuthGuard], //aqui estamos protegiendo el listtast, solo los que esten logueados podran verlo
   },
   {
-    path:'saveTask',
+    path: 'saveTask',
     component: SaveTaskComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path:'signUp',
+    path: 'signUp',
     component: RegisterComponent,
   },
   {
-    path:'registerUser',
+    path: 'registerUser',
     component: RegisterUserComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path:'listUser',
+    path: 'listUser',
     component: ListUserComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path:'updateUser',
+    path: 'updateUser',
     component: UpdateUserComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path:'registerRole',
+    path: 'registerRole',
     component: RegisterRoleComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path:'listRole',
+    path: 'listRole',
     component: ListRoleComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path:'updateRole',
+    path: 'updateRole',
     component: UpdateRoleComponent,
-  }
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
